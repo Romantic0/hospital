@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação dos Serviços</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/avaliacao.css">
+</head>
+<body>
+    <header>
+        <h1>Avaliação dos Serviços do Hospital</h1>
+        <p>Sua avaliação é anônima e muito importante para nós!</p>
+    </header>
+    <main class="container">
+        <form id="avaliacaoForm">
+            <div id="perguntasContainer">
+                <!-- As perguntas serão carregadas dinamicamente aqui -->
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback adicional (opcional):</label>
+                <textarea id="feedback" name="feedback" placeholder="Deixe seu comentário aqui"></textarea>
+            </div>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+        <div id="agradecimento" class="hidden">
+            <h2>Obrigado pela sua avaliação!</h2>
+            <p>O Hospital Regional Alto Vale agradece sua resposta, ela é muito importante para a melhoria contínua dos nossos serviços.</p>
+        </div>
+    </main>
+    <script src="scripts/avaliacao.js"></script>
+</body>
+</html>

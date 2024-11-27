@@ -1,0 +1,81 @@
+header {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.scale {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+.option {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradiente de cores da escala */
+.option-0 { background-color: #ff0000; }
+.option-1 { background-color: #ff3300; }
+.option-2 { background-color: #ff6600; }
+.option-3 { background-color: #ff9900; }
+.option-4 { background-color: #ffcc00; }
+.option-5 { background-color: #ffff00; color: black; }
+.option-6 { background-color: #ccff33; color: black; }
+.option-7 { background-color: #99ff33; color: black; }
+.option-8 { background-color: #66ff66; }
+.option-9 { background-color: #33cc33; }
+.option-10 { background-color: var(--primary-color); }
+
+/* Mensagem de agradecimento */
+.hidden {
+    display: none;
+}
+input[type="radio"] {
+    display: none;
