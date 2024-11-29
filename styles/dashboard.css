@@ -1,9 +1,13 @@
-/* Estilo Geral */
-body {
-    font-family: 'Arial', sans-serif;
+/* Reset e Estilo Geral */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
     color: #333;
 }
 
@@ -15,6 +19,7 @@ header {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Área Principal */
@@ -24,60 +29,42 @@ main {
     margin: 0 auto;
 }
 
-/* Resumo Geral */
+/* Seção de Resumo */
 #resumo {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-bottom: 40px;
-    text-align: center;
 }
 
-#resumo p {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    margin: 0 10px;
-}
-
-#resumo p span {
-    display: block;
-    font-size: 28px;
-    color: #007bff;
-    font-weight: bold;
-}
-
-/* Gráficos */
-.charts {
-    text-align: center;
-}
-
-.charts h2 {
-    margin-bottom: 20px;
-    color: #007bff;
-}
-
-canvas {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.dashboard-container {
-    margin: 20px auto;
-    max-width: 800px;
-    padding: 20px;
+.card {
     background-color: #fff;
     border-radius: 8px;
+    padding: 20px;
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.avaliacoes {
-    margin-top: 20px;
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-.avaliacoes h2 {
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Gráfico */
+#grafico-container {
+    max-width: 1000px;
+    margin: 0 auto;
     text-align: center;
-    margin-bottom: 20px;
-    color: #007BFF;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
