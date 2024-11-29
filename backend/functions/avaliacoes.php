@@ -1,17 +1,21 @@
+
+
 <?php
 require_once '../config/db.php';
 
 // Registrar avaliação
-function registrarAvaliacao($pdo, $perguntaId, $resposta, $feedback) {
-    $stmt = $pdo->prepare("
-        INSERT INTO avaliacoes (pergunta_id, resposta, feedback)
-        VALUES (:pergunta_id, :resposta, :feedback)
-    ");
-    $stmt->execute([
-        'pergunta_id' => $perguntaId,
-        'resposta' => $resposta,
-        'feedback' => $feedback,
-    ]);
+function registrarAvaliacao($pdo, $avaliacoes, $feedback) {
+    foreach ($avaliacoes as $avaliacao) {
+        $stmt = $pdo->prepare("
+            INSERT INTO avaliacoes (pergunta_id, resposta, feedback)
+            VALUES (:pergunta_id, :resposta, :feedback)
+        ");
+        $stmt->execute([
+            'pergunta_id' => $avaliacao['pergunta_id'],
+            'resposta' => $avaliacao['resposta'],
+            'feedback' => $feedback,
+        ]);
+    }
 }
 
 // Listar avaliações com média por pergunta

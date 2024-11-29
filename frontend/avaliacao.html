@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação dos Serviços</title>
+    <link rel="stylesheet" href="../styles/avaliacao.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Avaliação dos Serviços</h1>
+        <p>Sua opinião é muito importante para nós! Avalie os setores abaixo.</p>
+    </header>
+    <main class="container">
+        <form id="avaliacaoForm">
+            <div id="perguntasContainer">
+                <!-- As perguntas serão geradas dinamicamente -->
+            </div>
+            <div class="form-group">
+                <label for="feedback">Deixe um comentário (opcional):</label>
+                <textarea id="feedback" name="feedback" placeholder="Escreva aqui sua opinião..."></textarea>
+            </div>
+            <button type="submit" id="submitButton">Enviar Avaliação</button>
+        </form>
+        <div id="agradecimento" class="hidden">
+            <h2>Obrigado pela sua avaliação!</h2>
+            <p>Sua resposta foi registrada com sucesso.</p>
+        </div>
+    </main>
+    <script src="../scripts/avaliacao.js"></script>
+</body>
+</html>

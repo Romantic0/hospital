@@ -25,5 +25,51 @@ switch ($action) {
     default:
         echo json_encode(["error" => "Ação inválida"]);
         break;
+        case "listar_resumo":
+            $stmt = $pdo->prepare("
+                SELECT p.texto AS setor, 
+                       AVG(a.resposta) AS media,
+                       COUNT(a.id) AS total
+                FROM avaliacoes a
+                JOIN perguntas p ON a.pergunta_id = p.id
+                GROUP BY p.texto
+            ");
+            $stmt->execute();
+            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            break;
+            case "dashboard_resumo":
+                $stmt = $pdo->prepare("
+                    SELECT p.texto AS setor,
+                           AVG(a.resposta) AS media,
+                           COUNT(a.id) AS total
+                    FROM avaliacoes a
+                    JOIN perguntas p ON a.pergunta_id = p.id
+                    GROUP BY p.texto
+                ");
+                $stmt->execute();
+                echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+                break;
+                case "registrar_avaliacao":
+                    $data = json_decode(file_get_contents("php://input"), true);
+                    $avaliacoes = $data['avaliacoes'];
+                    $feedback = $data['feedback'] ?? null;
+                
+                    registrarAvaliacao($pdo, $avaliacoes, $feedback);
+                    echo json_encode(["success" => true]);
+                    break;
+                    case "media_por_setor":
+                        $stmt = $pdo->prepare("
+                            SELECT p.texto AS setor, 
+                                   AVG(a.resposta) AS media
+                            FROM avaliacoes a
+                            JOIN perguntas p ON a.pergunta_id = p.id
+                            GROUP BY p.texto
+                        ");
+                        $stmt->execute();
+                        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+                        break;
+                    
+                
+              
 }
 ?>
