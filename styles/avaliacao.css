@@ -97,6 +97,35 @@ button:hover {
     cursor: pointer;
     transition: transform 0.2s, background-color 0.3s;
 }
+.scale {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.nota {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.nota:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nota.selected {
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
 
 .scale div:hover {
     transform: scale(1.2);
@@ -109,3 +138,6 @@ button:hover {
 .hidden {
     display: none;
 }
+
+
+

@@ -1,57 +1,61 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        // Buscar dados de médias das avaliações do servidor
-        const response = await fetch("backend/routes/obter_medias.php");
+        // Buscar dados das médias das avaliações
+        const responseMedias = await fetch("../routes/obter_medias.php");
+        const dataMedias = await responseMedias.json();
+        console.log("Resposta da API de médias:", dataMedias); // Verifique os dados aqui
 
-        if (!response.ok) {
-            console.error("Erro ao carregar os dados de avaliação.");
-            return;
-        }
+        // Verifique se os dados possuem médias válidas
+        dataMedias.forEach(item => {
+            // Converte a média de string para número e arredonda
+            const mediaText = (typeof item.media === 'string' && !isNaN(parseFloat(item.media))) 
+                ? parseFloat(item.media).toFixed(1) 
+                : "Sem avaliações"; // Converte a média para número
 
-        const data = await response.json();
-        console.log(data); // Para depuração, veja os dados carregados
-
-        // Preencher as médias nas seções de resumo
-        data.forEach((item) => {
-            const mediaText = item.media ? item.media.toFixed(1) : "Sem avaliações";
             const perguntaTexto = item.pergunta_texto;
+            console.log("Pergunta:", perguntaTexto); // Verifique qual pergunta está sendo processada
 
-            if (perguntaTexto === "Limpeza") {
+            // Preencher os cards com as médias
+            if (perguntaTexto.includes("limpeza")) {
+                console.log("Preenchendo Limpeza com média:", mediaText); // Log para garantir que está preenchendo
                 document.getElementById("mediaLimpeza").textContent = `Média: ${mediaText}`;
-            } else if (perguntaTexto === "Recepção") {
+            } else if (perguntaTexto.includes("recepção")) {
+                console.log("Preenchendo Recepção com média:", mediaText); // Log para garantir que está preenchendo
                 document.getElementById("mediaRecepcao").textContent = `Média: ${mediaText}`;
-            } else if (perguntaTexto === "Agilidade") {
+            } else if (perguntaTexto.includes("agilidade")) {
+                console.log("Preenchendo Agilidade com média:", mediaText); // Log para garantir que está preenchendo
                 document.getElementById("mediaAgilidade").textContent = `Média: ${mediaText}`;
-            } else if (perguntaTexto === "Serviços Médicos") {
+            } else if (perguntaTexto.includes("serviços médicos")) {
+                console.log("Preenchendo Serviços Médicos com média:", mediaText); // Log para garantir que está preenchendo
                 document.getElementById("mediaServicos").textContent = `Média: ${mediaText}`;
             }
         });
 
-        // Preparar dados para o gráfico
-        const perguntas = data.map(item => item.pergunta_texto);
-        const medias = data.map(item => item.media);
+        // Buscar as avaliações detalhadas
+        const responseAvaliacoes = await fetch("../routes/buscar_avaliacoes.php");
+        const dataAvaliacoes = await responseAvaliacoes.json();
 
-        // Configuração do gráfico
-        const ctx = document.getElementById("graficoAvaliacao").getContext("2d");
+        if (dataAvaliacoes.error) {
+            console.error(dataAvaliacoes.error);
+            return;
+        }
 
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: perguntas,
-                datasets: [{
-                    label: "Média das Avaliações",
-                    data: medias,
-                    backgroundColor: "rgba(0, 123, 255, 0.5)",
-                    borderColor: "rgba(0, 123, 255, 1)",
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
+        // Exibir avaliações detalhadas
+        const avaliacoesContainer = document.getElementById("avaliacoesContainer");
+        dataAvaliacoes.forEach(avaliacao => {
+            const divAvaliacao = document.createElement("div");
+            divAvaliacao.classList.add("avaliacao");
+
+            divAvaliacao.innerHTML = `
+                <h4>${avaliacao.pergunta_texto}</h4>
+                <p><strong>Resposta:</strong> ${avaliacao.resposta}</p>
+                <p><strong>Feedback:</strong> ${avaliacao.feedback || "Nenhum comentário."}</p>
+                <p><strong>Data:</strong> ${new Date(avaliacao.data_hora).toLocaleString()}</p>
+            `;
+
+            avaliacoesContainer.appendChild(divAvaliacao);
         });
+
     } catch (error) {
         console.error("Erro ao carregar os dados:", error);
     }

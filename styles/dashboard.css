@@ -68,3 +68,47 @@ canvas {
     height: auto;
     border-radius: 8px;
 }
+
+
+/* Estilo para o contêiner das avaliações detalhadas */
+#avaliacoesContainer {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(205, 205, 230);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada avaliação individual */
+.avaliacao {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao h4 {
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.avaliacao p {
+    font-size: 1em;
+    color: #555555;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.avaliacao strong {
+    color: #007bff;
+}
+
+.avaliacao p + p {
+    margin-top: 10px;
+}
+
+.avaliacao:last-child {
+    margin-bottom: 0;
+}
